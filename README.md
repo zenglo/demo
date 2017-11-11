@@ -2,7 +2,7 @@
 该仓库用于存储技术Demo代码。
 
 ## Demo列表
-- [XmlSerializerDemo](#XmlSerializerDemo)：Xml Serializer序列化示例，支持未知类型
+- [XmlSerializerDemo](#xmlserializerdemo)：Xml Serializer序列化示例，支持未知类型
 
 ### XmlSerializerDemo
 Xml Serializer序列化示例，基于[XSerializer](https://github.com/QuickenLoans/XSerializer)实现。
