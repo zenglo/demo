@@ -19,11 +19,11 @@ namespace XmlSerializerDemo
                 Date = DateTime.Now,
                 Bars = new List<BaseBar> {
                     new ABar(){
-                        Id =2, IgnoreValue="基忽略" , Date = DateTime.Now,
+                        Id =2, IgnoreValue="基忽略" , Date = DateTime.Now, Value="A值",
                         AIgnoreValue ="A忽略", APro="A元素"
                     },
                     new BBar(){
-                        Id =3, IgnoreValue="基忽略" , Date = DateTime.Now,
+                        Id =3, IgnoreValue="基忽略" , Date = DateTime.Now, Value="B值",
                         BIgnoreValue ="B忽略", BPro="B属性"
                     }
                 }

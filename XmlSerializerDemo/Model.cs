@@ -32,7 +32,7 @@ namespace XmlSerializerDemo
         [XmlElement("attrDate")]
         public DateTime Date { get; set; }
 
-        [XmlAttribute("MyFoo")]
+        [XmlElement("Value")]
         public string Value { get; set; }
     }
 
