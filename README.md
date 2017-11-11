@@ -1,4 +1,4 @@
-# demo
+# Demo
 该仓库用于存储技术Demo代码。
 
 ## Demo列表
@@ -20,3 +20,8 @@ string xml = serializer.Serialize(rootTypeObj);
 //反序列化
 RootType roundTripFoo = serializer.Deserialize(xml);
 ```
+
+## Here's the AD
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/q6NFtNujicHJPWrvRTPNrD5i/zenglo/demo'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/q6NFtNujicHJPWrvRTPNrD5i/zenglo/demo.svg' />
+</a>
