@@ -21,7 +21,7 @@ namespace AspNetDemo.Controllers
                 function(para,end){
                     para.a+=1;
                     para.b+='你好!';
-                    end({a:1,b:'abc'});
+                    end(para);
                 }
             ", "{a:1,b:'zenglong'}");
             return View();

@@ -20,7 +20,17 @@ namespace ConsoleDemo
             using (Process process = new Process())
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = Assembly.GetExecutingAssembly().Location;
+                string assLocation = Assembly.GetExecutingAssembly().Location;//在web中，可能不准
+                if (assLocation.StartsWith(AppDomain.CurrentDomain.BaseDirectory))
+                {
+                    startInfo.FileName = assLocation;
+                }
+                else
+                {
+                    startInfo.FileName =
+                        System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin",
+                        System.IO.Path.GetFileName(assLocation));
+                }
                 startInfo.Arguments = string.Format("{0} {1}",
                     Uri.EscapeDataString(jsFunc),
                     Uri.EscapeDataString(jsonPara ?? string.Empty));
