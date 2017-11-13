@@ -12,28 +12,24 @@ namespace ConsoleDemo
 
         static void Main(string[] args)
         {
+            if (args == null || args.Length == 0)
+            {
+                args = new string[]
+                {
+                    @"
+                function(para,end){
+                    para.a+=1;
+                    para.b+='你好!';
+                    end(para);
+                }
+            ",
+                    "{a:1,b:'zenglong'}"
+                };
+                args = args.Select(m => Uri.EscapeDataString(m)).ToArray();
+            }
             try
             {
-                if (args == null || args.Length == 0)
-                    throw new Exception("Can't found javascript string parameter!");
-                string decodedJsFunc = null;
-                try
-                {
-                    decodedJsFunc = Uri.UnescapeDataString(args[0]);
-                }
-                catch (Exception exc)
-                {
-                    throw new Exception("Decode javascript string parameter error", exc);
-                }
-                string result = null;
-                try
-                {
-                    result = RunJsInNode(decodedJsFunc).Result;
-                }
-                catch (Exception exc)
-                {
-                    throw new Exception("execute javascript error", exc);
-                }
+                string result = JsCaller.CallJsFunWithCmdArgs(args);
                 OutputResult(result);
             }
             catch (Exception exc)
@@ -49,19 +45,6 @@ namespace ConsoleDemo
         private static void OutputResult(object result)
         {
             Console.Write("succeed,{0}", result.ToString());
-        }
-
-        public static async Task<string> RunJsInNode(string js)
-        {
-            var func = Edge.Func(@"
-            return function (data, callback) {
-                var endCallback = function(result){
-                    callback(null,JSON.stringify(result));
-                };
-                (" + js + @")(endCallback);
-            }
-        ");
-            return (await func(null)).ToString();
         }
     }
 }

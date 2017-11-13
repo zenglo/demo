@@ -1,4 +1,5 @@
-﻿using EdgeJs;
+﻿using ConsoleDemo;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace AspNetDemo.Controllers
@@ -15,26 +17,14 @@ namespace AspNetDemo.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            string result = CallNodeJs(".Net");
+            string result = JsCaller.CallFuncInExe(@"
+                function(para,end){
+                    para.a+=1;
+                    para.b+='你好!';
+                    end({a:1,b:'abc'});
+                }
+            ", "{a:1,b:'zenglong'}");
             return View();
-        }
-
-        public static  string CallNodeJs(string js)
-        {
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\ConsoleDemo.exe");
-            startInfo.Arguments = js;
-            startInfo.UseShellExecute = false;
-            startInfo.RedirectStandardInput = false;
-            startInfo.RedirectStandardOutput = true;
-            startInfo.CreateNoWindow = true;
-            process.StartInfo = startInfo;
-            process.Start();
-            var strResult =  process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-            process.Close();
-            return strResult;
         }
     }
 }
