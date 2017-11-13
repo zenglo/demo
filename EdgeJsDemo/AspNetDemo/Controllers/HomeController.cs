@@ -1,5 +1,4 @@
-﻿using EdgeJs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace AspNetDemo.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            string result = CallNodeJs(".Net");
+            string result = CallNodeJs("function(end){end('abc');}");
             return View();
         }
 
